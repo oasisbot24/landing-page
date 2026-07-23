@@ -36,9 +36,35 @@ const scrollToRouteSection = () => {
   });
 };
 
+const setupMarketFilters = () => {
+  const filterButtons = document.querySelectorAll("[data-market-filter]");
+  const marketRows = document.querySelectorAll(".market-row[data-market]");
+
+  if (!filterButtons.length || !marketRows.length) return;
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const selectedFilter = button.dataset.marketFilter;
+
+      filterButtons.forEach((item) => {
+        item.classList.toggle("is-active", item === button);
+      });
+
+      marketRows.forEach((row) => {
+        const shouldShow =
+          selectedFilter === "all" ||
+          row.dataset.market === selectedFilter ||
+          (selectedFilter === "recommended" && row.querySelector(".recommend-chip"));
+        row.hidden = !shouldShow;
+      });
+    });
+  });
+};
+
 revealTargets.forEach((target) => target.classList.add("reveal"));
 
 updateRouteCanonical();
+setupMarketFilters();
 
 const revealObserver = new IntersectionObserver(
   (entries) => {

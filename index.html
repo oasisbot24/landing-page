@@ -28,7 +28,7 @@
     <link rel="canonical" href="https://www.oasisbot365.com/" />
     <title>OASIS | 코인·나스닥·ETF·금 자동매매</title>
     <link rel="icon" type="image/png" href="assets/oasis-favicon.png" />
-    <link rel="stylesheet" href="styles.css?v=20260507-bright-graph" />
+    <link rel="stylesheet" href="styles.css?v=20260720-market-list" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -446,6 +446,131 @@
         </div>
       </section>
 
+      <section class="market-list" id="returns">
+        <div class="section-head">
+          <p class="section-kicker">Market Coverage</p>
+          <h2>오아시스 제공 종목</h2>
+          <p>코인부터 미국 주식과 ETF까지, 자동매매 봇으로 운용 가능한 주요 종목을 제공합니다.</p>
+        </div>
+
+        <div class="market-panel" aria-label="오아시스 제공 종목">
+          <div class="market-tabs" aria-label="종목 분류">
+            <button class="is-active" type="button" data-market-filter="all">전체</button>
+            <button type="button" data-market-filter="recommended">강력추천</button>
+            <button type="button" data-market-filter="coin">코인</button>
+            <button type="button" data-market-filter="stock">미국 주식</button>
+            <button type="button" data-market-filter="etf">ETF</button>
+          </div>
+
+          <div class="market-table" role="table" aria-label="오아시스 제공 종목 목록">
+            <div class="market-row market-head" role="row">
+              <span>종목</span>
+              <span>심볼</span>
+              <span>분류</span>
+              <span>추천 운용</span>
+              <span>봇 제공</span>
+            </div>
+            <div class="market-row asset-btc" role="row" data-market="coin">
+              <span><i class="market-icon" aria-hidden="true"></i><b>비트코인</b><em class="recommend-chip">강력추천</em></span>
+              <span>BTC</span>
+              <span>디지털 자산</span>
+              <span>DCA 6회차 · 안정</span>
+              <strong>제공중</strong>
+            </div>
+            <div class="market-row asset-eth" role="row" data-market="coin">
+              <span><i class="market-icon" aria-hidden="true"></i><b>이더리움</b></span>
+              <span>ETH</span>
+              <span>디지털 자산</span>
+              <span>DCA 6회차 · 안정</span>
+              <strong>제공중</strong>
+            </div>
+            <div class="market-row asset-xrp" role="row" data-market="coin">
+              <span><i class="market-icon" aria-hidden="true"></i><b>엑스알피(리플)</b></span>
+              <span>XRP</span>
+              <span>디지털 자산</span>
+              <span>DCA 6회차 · 안정</span>
+              <strong>제공중</strong>
+            </div>
+            <div class="market-row asset-doge" role="row" data-market="coin">
+              <span><i class="market-icon" aria-hidden="true"></i><b>도지코인</b></span>
+              <span>DOGE</span>
+              <span>디지털 자산</span>
+              <span>DCA 6회차 · 초안정</span>
+              <strong>제공중</strong>
+            </div>
+            <div class="market-row asset-sol" role="row" data-market="coin">
+              <span><i class="market-icon" aria-hidden="true"></i><b>솔라나</b></span>
+              <span>SOL</span>
+              <span>디지털 자산</span>
+              <span>DCA 6회차 · 초안정</span>
+              <strong>제공중</strong>
+            </div>
+            <div class="market-row asset-ondo" role="row" data-market="coin">
+              <span><i class="market-icon" aria-hidden="true"></i><b>온도파이낸스</b></span>
+              <span>ONDO</span>
+              <span>디지털 자산</span>
+              <span>DCA 6회차 · 초안정</span>
+              <strong>제공중</strong>
+            </div>
+            <div class="market-row asset-xaut" role="row" data-market="coin">
+              <span><i class="market-icon" aria-hidden="true"></i><b>테더골드</b><em class="recommend-chip">강력추천</em><em class="safe-chip">안전종목</em></span>
+              <span>XAUT</span>
+              <span>디지털 자산</span>
+              <span>DCA 5회차 · 공격</span>
+              <strong>제공중</strong>
+            </div>
+            <div class="market-row asset-qqq" role="row" data-market="etf">
+              <span><i class="market-icon" aria-hidden="true"></i><b>QQQ</b><em class="recommend-chip">강력추천</em><em class="safe-chip">안전종목</em></span>
+              <span>QQQ</span>
+              <span>ETF</span>
+              <span>DCA 5회차 · 공격</span>
+              <strong>제공중</strong>
+            </div>
+            <div class="market-row asset-aapl" role="row" data-market="stock">
+              <span><i class="market-icon" aria-hidden="true"></i><b>애플</b><em class="recommend-chip">강력추천</em></span>
+              <span>AAPL</span>
+              <span>미국 주식</span>
+              <span>DCA 6회차 · 안정</span>
+              <strong>제공중</strong>
+            </div>
+            <div class="market-row asset-coin" role="row" data-market="stock">
+              <span><i class="market-icon" aria-hidden="true"></i><b>코인베이스</b></span>
+              <span>COIN</span>
+              <span>미국 주식</span>
+              <span>DCA 6회차 · 안정</span>
+              <strong>제공중</strong>
+            </div>
+            <div class="market-row asset-pltr" role="row" data-market="stock">
+              <span><i class="market-icon" aria-hidden="true"></i><b>팔란티어</b></span>
+              <span>PLTR</span>
+              <span>미국 주식</span>
+              <span>DCA 6회차 · 초안정</span>
+              <strong>제공중</strong>
+            </div>
+            <div class="market-row asset-tsla" role="row" data-market="stock">
+              <span><i class="market-icon" aria-hidden="true"></i><b>테슬라</b></span>
+              <span>TSLA</span>
+              <span>미국 주식</span>
+              <span>DCA 6회차 · 초안정</span>
+              <strong>제공중</strong>
+            </div>
+            <div class="market-row asset-spy" role="row" data-market="etf">
+              <span><i class="market-icon" aria-hidden="true"></i><b>SPY</b><em class="recommend-chip">강력추천</em><em class="safe-chip">안전종목</em></span>
+              <span>SPY</span>
+              <span>ETF</span>
+              <span>DCA 5회차 · 공격</span>
+              <strong>제공중</strong>
+            </div>
+          </div>
+          <p class="market-disclaimer">
+            제공 종목과 봇 전략은 시장 상황 및 서비스 운영 정책에 따라 달라질 수 있습니다. 자동매매는 수익을 보장하지 않으며, 투자 결정과 결과는 이용자 본인의 책임입니다.
+          </p>
+          <div class="market-cta">
+            <a class="button" href="/start">오아시스 바로가기 <span aria-hidden="true">&#8599;</span></a>
+          </div>
+        </div>
+      </section>
+
       <section class="difference" id="difference">
         <div class="difference-graph">
           <div class="difference-graph-copy">
@@ -470,7 +595,7 @@
 
             <article class="trust-node node-price">
               <span>월 정기결제</span>
-              <strong>59,000원</strong>
+              <strong>6,900원 ~</strong>
             </article>
             <article class="trust-node node-years">
               <span>운용 데이터</span>
@@ -557,13 +682,19 @@
           <a class="brand footer-brand" href="/">
             <img src="assets/oasis-logo-transparent.png" alt="OASIS" />
           </a>
+          <div class="footer-company">
+            <p>상호명 : 옵티머스 오아시스(주) | 대표자 이주원 | 사업자번호 : 726-81-03772</p>
+            <p>주소 : 서울 구로구 디지털로31길 12 2F</p>
+            <p>고객센터</p>
+            <p>영업시간 : 상시 | 이메일 : oasis_bot@oasisbot24.com | 전화번호 : 010-9297-6574</p>
+          </div>
         </div>
         <a class="footer-cta" href="/start">서비스 시작하기 <span aria-hidden="true">&#8599;</span></a>
         <p class="copyright">2026 Copyright @ OASIS</p>
       </footer>
     </main>
 
-    <script src="script.js?v=20260507-refined"></script>
+    <script src="script.js?v=20260720-market-filters"></script>
   </body>
 </html>
 

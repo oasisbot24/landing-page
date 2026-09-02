@@ -61,10 +61,101 @@ const setupMarketFilters = () => {
   });
 };
 
+const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+const UTM_STORAGE_KEY = "oasis_utm_params";
+const CTA_SELECTOR = 'a[href="/start"], a[href^="/start?"], a[href^="https://cloud.oasisbot24.com"]';
+
+const getCurrentUtmParams = () => {
+  const currentParams = new URLSearchParams(window.location.search);
+  const utmParams = {};
+
+  UTM_KEYS.forEach((key) => {
+    const value = currentParams.get(key);
+    if (value) utmParams[key] = value;
+  });
+
+  return utmParams;
+};
+
+const getStoredUtmParams = () => {
+  try {
+    return JSON.parse(sessionStorage.getItem(UTM_STORAGE_KEY) || "{}");
+  } catch (error) {
+    return {};
+  }
+};
+
+const persistUtmParams = () => {
+  const currentUtmParams = getCurrentUtmParams();
+  if (!Object.keys(currentUtmParams).length) return getStoredUtmParams();
+
+  sessionStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(currentUtmParams));
+  return currentUtmParams;
+};
+
+const appendParamsToUrl = (url, params) => {
+  if (!Object.keys(params).length) return url;
+
+  const nextUrl = new URL(url, window.location.origin);
+  Object.entries(params).forEach(([key, value]) => {
+    if (!nextUrl.searchParams.has(key)) nextUrl.searchParams.set(key, value);
+  });
+
+  return nextUrl.origin === window.location.origin
+    ? `${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`
+    : nextUrl.toString();
+};
+
+const getCtaLocation = (link) => {
+  const section = link.closest("section");
+  if (section?.id) return section.id;
+  if (link.closest("header")) return "header";
+  if (link.closest("footer")) return "footer";
+  return "unknown";
+};
+
+const setupUtmAndCtaTracking = () => {
+  const utmParams = persistUtmParams();
+  const ctaLinks = document.querySelectorAll(CTA_SELECTOR);
+
+  ctaLinks.forEach((link) => {
+    link.href = appendParamsToUrl(link.getAttribute("href"), utmParams);
+
+    link.addEventListener("click", (event) => {
+      if (typeof window.gtag !== "function") return;
+
+      const destinationUrl = link.href;
+      let callbackFired = false;
+      const navigate = () => {
+        if (callbackFired) return;
+        callbackFired = true;
+        window.location.href = destinationUrl;
+      };
+
+      event.preventDefault();
+      window.gtag("event", "cta_click", {
+        event_category: "engagement",
+        event_label: link.textContent.trim(),
+        cta_text: link.textContent.trim(),
+        cta_location: getCtaLocation(link),
+        cta_href: destinationUrl,
+        destination_url: destinationUrl,
+        page_path: window.location.pathname,
+        landing_page: window.location.href,
+        ...utmParams,
+        transport_type: "beacon",
+        event_callback: navigate,
+      });
+      window.setTimeout(navigate, 600);
+    });
+  });
+};
+
 revealTargets.forEach((target) => target.classList.add("reveal"));
 
 updateRouteCanonical();
 setupMarketFilters();
+setupUtmAndCtaTracking();
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
